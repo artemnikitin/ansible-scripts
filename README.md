@@ -11,3 +11,7 @@ export ANSIBLE_VAULT_PASSWORD_FILE=zzz
 # Disable verification by .known-hosts file
 export ANSIBLE_HOST_KEY_CHECKING=False
 ```
+
+### Run
+Run with command like:    
+`ansible-playbook -s playbook_name.yml -u root`
