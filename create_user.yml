@@ -1,0 +1,15 @@
+---
+- hosts: all
+
+  tasks:
+    - name: Load variables
+      include_vars: "vault.yml"
+      no_log: true
+
+    - name: Create user account
+      user: name="{{ new_user }}"
+        password="{{ new_user_password }}"
+        state=present
+        append=yes
+        groups=sudo
+        shell="/bin/bash"
