@@ -1,0 +1,6 @@
+---
+# defaults file for ansible-role-papertrail
+papertrail_version: "0.19"
+papertrail_files: []
+papertrail_host: ""
+papertrail_port: ""
