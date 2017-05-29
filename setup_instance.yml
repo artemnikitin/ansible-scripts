@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+
+  vars_files:
+    - vault.yml
+
+  roles:
+    - newrelic
+    - ansible-papertrail
+    - ansible-datadog
+
+  vars:
+    newrelic_license_key: "{{ vault_newrelic_key }}"
+    papertrail_host: "{{ vault_papertrail_host }}"
+    papertrail_port: "{{ vault_papertrail_port }}"
+    datadog_api_key: "{{ vault_datadog_key }}"
+
+  tasks:
+    - include: create_user.yml
+    - include: run_updates.yml
+
+  handlers:
+    - include: handlers.yml
