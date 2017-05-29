@@ -2,6 +2,9 @@
 - hosts: all
   become: yes
 
+  vars_files:
+    - vault.yml
+
   roles:
     - ansible-os-hardening
     #- ansible-ssh-hardening
@@ -14,6 +17,23 @@
       template: src=templates/fail2ban.conf.j2 dest=/etc/fail2ban/jail.local
       notify:
         - restart fail2ban
+
+    - name: Update ssh parameters
+      lineinfile:
+        dest: /etc/ssh/sshd_config
+        state: present
+        regexp: "^{{ item.key }}"
+        line: "{{ item.key }} {{ item.value }}"
+        insertafter: EOF
+      with_items:
+        - { key: 'Port', value: '22' }
+        - { key: 'PermitRootLogin', value: 'no' }
+        - { key: 'PasswordAuthentication', value: 'no' }
+        - { key: 'LoginGraceTime', value: '20' }
+        - { key: 'X11Forwarding', value: 'no' }
+        - { key: 'AllowUsers', value: '{{ vault_new_user }}' }
+      notify:
+        - restart ssh
 
   handlers:
     - include: handlers.yml

@@ -17,20 +17,3 @@
   authorized_key:
     key: "{{ vault_auth_public_key }}"
     user: "{{ vault_new_user }}"
-
-- name: Update ssh parameters
-  lineinfile:
-    dest: /etc/ssh/sshd_config
-    state: present
-    regexp: "^{{ item.key }}"
-    line: "{{ item.key }} {{ item.value }}"
-    insertafter: EOF
-  with_items:
-    - { key: 'Port', value: '22' }
-    - { key: 'PermitRootLogin', value: 'no' }
-    - { key: 'PasswordAuthentication', value: 'no' }
-    - { key: 'LoginGraceTime', value: '20' }
-    - { key: 'X11Forwarding', value: 'no' }
-    - { key: 'AllowUsers', value: '{{ vault_new_user }}' }
-  notify:
-    - restart ssh

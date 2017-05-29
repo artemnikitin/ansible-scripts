@@ -17,8 +17,8 @@
     datadog_api_key: "{{ vault_datadog_key }}"
 
   tasks:
-    - include: create_user.yml
-    - include: run_updates.yml
+    - include: tasks/create_user.yml
+    - include: tasks/run_updates.yml
 
   handlers:
     - include: handlers.yml
