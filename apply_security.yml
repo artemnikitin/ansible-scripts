@@ -10,30 +10,8 @@
     - ansible-ssh-hardening
 
   tasks:  
-    - name: Install fail2ban
-      apt: package=fail2ban state=present
-
-    - name: Copy fail2ban default config
-      template: src=templates/fail2ban.conf.j2 dest=/etc/fail2ban/jail.local
-      notify:
-        - restart fail2ban
-
-    - name: Update ssh parameters
-      lineinfile:
-        dest: /etc/ssh/sshd_config
-        state: present
-        regexp: "^{{ item.key }}"
-        line: "{{ item.key }} {{ item.value }}"
-        insertafter: EOF
-      with_items:
-        - { key: 'Port', value: '22' }
-        - { key: 'PermitRootLogin', value: 'no' }
-        - { key: 'PasswordAuthentication', value: 'no' }
-        - { key: 'LoginGraceTime', value: '20' }
-        - { key: 'X11Forwarding', value: 'no' }
-        - { key: 'AllowUsers', value: '{{ vault_new_user }}' }
-      notify:
-        - restart ssh
+    - include: tasks/setup_file2ban.yml
+    - include: tasks/secure_ssh.yml
 
   handlers:
     - include: handlers.yml
