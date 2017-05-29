@@ -7,7 +7,7 @@
 
   roles:
     - ansible-os-hardening
-    #- ansible-ssh-hardening
+    - ansible-ssh-hardening
 
   tasks:  
     - name: Install fail2ban
