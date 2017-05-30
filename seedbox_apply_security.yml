@@ -11,6 +11,7 @@
     - ansible-ufw
 
   vars:
+    ufw_etc_default_ipv6: false
     ufw_rules: 
       - rule: allow
         to_port: 22
