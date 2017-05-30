@@ -9,12 +9,16 @@
     - newrelic
     - ansible-papertrail
     - ansible-datadog
+    - ansible-syncthing
 
   vars:
     newrelic_license_key: "{{ vault_newrelic_key }}"
     papertrail_host: "{{ vault_papertrail_host }}"
     papertrail_port: "{{ vault_papertrail_port }}"
     datadog_api_key: "{{ vault_datadog_key }}"
+    syncthing_user: "{{ vault_new_user }}"
+    syncthing_home: "/home/{{ vault_new_user }}"
+    syncthing_use_ufw: false
 
   tasks:
     - include: tasks/create_user.yml
