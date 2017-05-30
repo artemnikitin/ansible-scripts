@@ -8,6 +8,43 @@
   roles:
     - ansible-os-hardening
     - ansible-ssh-hardening
+    - ansible-ufw
+
+  vars:
+    ufw_rules: 
+      - rule: allow
+        to_port: 22
+        protocol: tcp
+      - rule: allow
+        to_port: 23
+        protocol: udp
+      - rule: allow
+        to_port: 80
+        protocol: tcp
+      - rule: allow
+        to_port: 443
+        protocol: tcp
+      - rule: allow
+        to_port: 5000
+        protocol: tcp
+      - rule: allow
+        to_port: 51413
+        protocol: tcp
+      - rule: allow
+        to_port: 6881
+        protocol: udp
+      - rule: allow
+        to_port: 8080
+        protocol: tcp
+      - rule: allow
+        to_port: 8384
+        protocol: tcp
+      - rule: allow
+        to_port: 22000
+        protocol: tcp
+      - rule: allow
+        to_port: 21027
+        protocol: udp
 
   tasks:  
     - include: tasks/setup_file2ban.yml
