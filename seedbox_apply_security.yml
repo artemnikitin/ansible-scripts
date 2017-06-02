@@ -23,9 +23,6 @@
         to_port: 80
         protocol: tcp
       - rule: allow
-        to_port: 443
-        protocol: tcp
-      - rule: allow
         to_port: 5000
         protocol: tcp
       - rule: allow
@@ -35,10 +32,7 @@
         to_port: 6881
         protocol: udp
       - rule: allow
-        to_port: 8080
-        protocol: tcp
-      - rule: allow
-        to_port: 8384
+        to_port: 8081
         protocol: tcp
       - rule: allow
         to_port: 22000

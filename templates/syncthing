@@ -1,0 +1,30 @@
+server {
+   listen 8081;
+   server_name localhost;
+
+    charset utf-8;
+
+    client_max_body_size 10M;
+
+    access_log /var/log/nginx/access_syncthing.log;
+    error_log /var/log/nginx/error_syncthing.log;
+
+    open_file_cache          max=2000 inactive=20s;
+    open_file_cache_valid    60s;
+    open_file_cache_min_uses 5;
+    open_file_cache_errors   off;
+
+    gzip            on;
+    gzip_types      text/plain text/html text/css application/css application/html text/javascript application/x-javascript application/javascript application/xml ;
+    gzip_proxied    no-store no-cache private expired auth;
+    gzip_min_length 1000;
+
+   location / {
+        proxy_set_header     X-Real-IP $remote_addr;
+        proxy_set_header     Host      $http_host;
+        proxy_pass           http://127.0.0.1:8080;
+        auth_basic           "Restricted";
+	    auth_basic_user_file /etc/nginx/.htpasswd;
+    }
+
+}

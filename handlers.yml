@@ -11,3 +11,6 @@
 
 - name: restart server
   command: /sbin/reboot
+
+- name: restart nginx
+  service: name=nginx state=restarted

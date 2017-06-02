@@ -23,6 +23,7 @@
   tasks:
     - include: tasks/create_user.yml
     - include: tasks/run_updates.yml
+    - include: tasks/setup_nginx.yml
 
   handlers:
     - include: handlers.yml

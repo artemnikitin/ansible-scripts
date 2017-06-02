@@ -1,0 +1,20 @@
+---
+
+- name: Create file for password
+  file: path=/etc/nginx/.htpasswd state=touch
+
+- name: Add password for HTTP Basic Auth
+  lineinfile:
+    path: /etc/nginx/.htpasswd
+    line: "{{ vault_nginx_pass }}"
+
+- name: Add HTTP Basic Auth for torrent
+  copy: src=templates/rutorrent dest=/etc/nginx/sites-enabled/rutorrent
+  notify:
+    - restart nginx
+
+- name: Add HTTP Basic Auth for Syncthing
+  copy: src=templates/syncthing dest=/etc/nginx/sites-enabled/syncthing
+  notify:
+    - restart nginx
+
