@@ -23,9 +23,11 @@
     netdata_registry_enabled: false
 
   tasks:
+    - include: tasks/set_file_permissions.yml
     - include: tasks/create_user.yml
-    - include: tasks/run_updates.yml
     - include: tasks/setup_nginx.yml
+    - include: tasks/setup_rtorrent.yml
+    - include: tasks/run_updates.yml
 
   handlers:
     - include: handlers.yml

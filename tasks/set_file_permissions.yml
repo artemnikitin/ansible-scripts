@@ -1,0 +1,7 @@
+---
+
+- name: Ensure directory is 0777
+  command: find {{ vault_folder }} -type d -exec chmod 0777 {} \;
+
+- name: Ensure files are 0777
+  command: find {{ vault_folder }} -type f -exec chmod 0777 {} \;

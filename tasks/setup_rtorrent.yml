@@ -1,0 +1,13 @@
+---
+
+- name: Delete default config
+  file: path=/home/rtorrent/.rtorrent.rc state=absent
+
+- name: Delete default config 2
+  file: path=/home/rtorrent/.rtorrent.rce state=absent
+
+- name: Put config
+  copy: src=templates/dot.rtorrent.rc dest=/home/rtorrent/.rtorrent.rc
+
+- name: Restart rtorrent
+  shell: supervisorctl start rtorrent

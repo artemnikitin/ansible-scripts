@@ -1,0 +1,42 @@
+system.umask.set = 022
+directory = /home/rtorrent/downloads
+session = /home/rtorrent/sessions
+set_max_file_size = 536870912000
+schedule = watch_directory,0,10,"load_start=/home/rtorrent/watch/*.torrent"
+
+# Maximum number of simultaneous uploads and downloads
+max_downloads_global = 2
+max_uploads_global = 200
+
+# Global upload and download rate in KiB. "0" for unlimited.
+download_rate = 0
+upload_rate = 0
+
+max_memory_usage = 1536M
+set_max_open_files = 4096
+
+## Network
+ip = 0.0.0.0
+port_range = 51413-51413
+port_random = yes
+
+## Trackers / DHT
+dht = auto
+dht_port = 6881
+peer_exchange = yes
+use_udp_trackers = yes
+
+## BitTorrent
+min_peers = 20
+max_peers = 1000
+min_peers_seed = 10
+max_peers_seed = 1000
+max_uploads = 40
+encryption = allow_incoming,try_outgoing
+
+## Schedules
+schedule = low_diskspace,5,60,close_low_diskspace=500M
+
+## XML RPC
+scgi_port = 127.0.0.1:5000
+encoding_list = UTF-8

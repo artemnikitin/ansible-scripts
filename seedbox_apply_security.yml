@@ -27,10 +27,8 @@
         protocol: tcp
       - rule: allow
         to_port: 51413
-        protocol: tcp
       - rule: allow
         to_port: 6881
-        protocol: udp
       - rule: allow
         to_port: 8081
         protocol: tcp
@@ -41,8 +39,7 @@
         to_port: 22000
         protocol: tcp
       - rule: allow
-        to_port: 21027
-        protocol: udp
+        to_port: 22067
 
   tasks:  
     - include: tasks/setup_file2ban.yml
