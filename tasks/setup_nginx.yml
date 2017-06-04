@@ -18,3 +18,7 @@
   notify:
     - restart nginx
 
+- name: Add HTTP Basic Auth for netdata
+  copy: src=templates/netdata dest=/etc/nginx/sites-enabled/netdata
+  notify:
+    - restart nginx

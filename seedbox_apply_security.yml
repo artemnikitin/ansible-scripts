@@ -35,6 +35,9 @@
         to_port: 8081
         protocol: tcp
       - rule: allow
+        to_port: 8082
+        protocol: tcp
+      - rule: allow
         to_port: 22000
         protocol: tcp
       - rule: allow

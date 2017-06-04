@@ -10,6 +10,7 @@
     - ansible-papertrail
     - ansible-datadog
     - ansible-syncthing
+    - ansible-netdata
 
   vars:
     newrelic_license_key: "{{ vault_newrelic_key }}"
@@ -19,6 +20,7 @@
     syncthing_user: "{{ vault_new_user }}"
     syncthing_home: "/home/{{ vault_new_user }}"
     syncthing_use_ufw: false
+    netdata_registry_enabled: false
 
   tasks:
     - include: tasks/create_user.yml
